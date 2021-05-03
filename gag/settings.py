@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.contrib import messages
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -122,3 +124,23 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+
+MESSAGE_TAGS = {
+    messages.INFO: "alert alert-info",
+    messages.WARNING: "alert alert-warning",
+    messages.ERROR: "alert alert-danger",
+    messages.SUCCESS: "alert alert-success",
+    messages.DEBUG: "alert alert-debug"
+}
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'assets'
+]
