@@ -2,9 +2,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import UpdateView
+from .models import User
 from .forms import RegistrationForm, LoginForm
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class ClientRegistration(View):
@@ -26,13 +30,13 @@ class ClientRegistration(View):
             user.set_password(user.password)
             user.save()
 
-
             messages.success(request, _("Siz muvaffaqiyatli ro'yhatdan o'tingiz !!!"))
             return redirect("main:index")
 
         return render(request, 'layouts/form.html', {
             'form': form
         })
+
 
 class ClientLogin(View):
     def setup(self, request, *args, **kwargs):
@@ -44,7 +48,6 @@ class ClientLogin(View):
         return render(request, 'layouts/form.html', {
             'form': LoginForm()
         })
-
 
     def post(self, request):
         form = LoginForm(data=request.POST)
@@ -62,6 +65,8 @@ class ClientLogin(View):
         return render(request, 'layouts/form.html', {
             'form': form
         })
+
+
 @login_required
 def client_logout(request):
     messages.success(request, "Xayr {}!".format(request.user.username))
@@ -69,3 +74,18 @@ def client_logout(request):
 
     return redirect('main:index')
 
+
+class ClientProfile(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = ['first_name', 'last_name', 'username', 'email', 'photo']
+    template_name = 'layouts/form.html'
+    success_url = reverse_lazy('client:profile')
+
+    def setup(self, request, *args, **kwargs):
+        super().setup(request, *args, **kwargs)
+
+        request.title = _("Profil")
+        request.button_title = _("Saqlash")
+
+    def get_object(self, queryset=None):
+        return self.request.user

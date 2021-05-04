@@ -12,24 +12,34 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
-            {% if user.is_authenticated %}
-                <a class="navbar-brand ml-auto" href="{% url 'client:logout' %}">Chiqish</a>
-            {% else %}
-                <a class="navbar-brand ml-auto" href="{% url 'client:login' %}">Tizimga kirish</a>
-              <a class="btn btn-primary rounded-pill" type="submit" href="{% url 'client:registration' %}">Ro'yhatdan o'tish</a>
-            {% endif %}
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
+        {% if user.is_authenticated %}
+            <ul class="nav-item dropdown">
+                <a class="nav-link" href="" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="user-avatar rounded-circle" src="{{ request.user.avatar }}">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-link" href="{% url 'client:profile' %}">Profil</a>
+                    <a class="nav-link" href="{% url 'client:logout' %}">Chiqish</a>
+                </div>
+            </ul>
+        {% else %}
+            <a class="navbar-brand ml-auto" href="{% url 'client:login' %}">Tizimga kirish</a>
+            <a class="btn btn-primary rounded-pill" type="submit" href="{% url 'client:registration' %}">Ro'yhatdan
+                o'tish</a>
+        {% endif %}
+    </div>
+</nav>
 {% block content %}
     <div class="container"></div>
     {% include 'includes/_message.html' %}
 {% endblock %}
 
 </body>
-    <script src="{% static 'vendor/jquery.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'vendor/jquery.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </html>
