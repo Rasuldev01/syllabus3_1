@@ -14,32 +14,60 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
-        {% if user.is_authenticated %}
-            <ul class="nav-item dropdown">
-                <a class="nav-link" href="" id="navbarDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="user-avatar rounded-circle" src="{{ request.user.avatar }}">
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="nav-link" href="{% url 'client:profile' %}">Profil</a>
-                    <a class="nav-link" href="{% url 'client:logout' %}">Chiqish</a>
+        <a class="navbar-brand" href="{% url "main:index" %}">GAG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item {% if crn == "client:profile" %}active{% endif %}">
+                    <li class="nav-item dropdown">
+                    <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{ request.user.avatar }}" class="user-avatar rounded-circle">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            <a class="dropdown-item" href="{% url "client:profile" %}">Profil</a>
+
+                            <a class="dropdown-item" href="{% url "client:logout" %}">Chiqish</a>
+
+                    </div>
+                         <li class="nav-item active mt-2">
+                        <a class="btn btn-primary rounded-pill" href="{% url "main:upload" %}"><i class="bi bi-arrow-bar-up"></i>Yuklash</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url "client:login" %}">Tizimga kirish</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="btn btn-primary rounded-pill" href="{% url "client:registration" %}">Roʻyxatdan
+                            oʻtish</a>
+                    </li>
+                {% endif %}
+
+                </ul>
                 </div>
             </ul>
-        {% else %}
-            <a class="navbar-brand ml-auto" href="{% url 'client:login' %}">Tizimga kirish</a>
-            <a class="btn btn-primary rounded-pill" type="submit" href="{% url 'client:registration' %}">Ro'yhatdan
-                o'tish</a>
-        {% endif %}
+        </div>
     </div>
 </nav>
+
+
+<div class="container">
+    {% include "includes/_message.html" %}
+</div>
 {% block content %}
-    <div class="container"></div>
-    {% include 'includes/_message.html' %}
+
 {% endblock %}
 
-</body>
+
+
+
+
 <script src="{% static 'vendor/jquery.js' %}"></script>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
+</body>
 </html>

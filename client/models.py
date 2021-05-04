@@ -4,7 +4,7 @@ from gag.helpers import UploadTo
 from django.templatetags.static import static
 
 class User(AbstractUser):
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to=UploadTo("profile"))
 
     @property
     def avatar(self):

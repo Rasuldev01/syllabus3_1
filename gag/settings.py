@@ -131,8 +131,8 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/upload/'
+MEDIA_ROOT = BASE_DIR / "upload"
 
 INTERNAL_IPS = [
     '127.0.0.1'
