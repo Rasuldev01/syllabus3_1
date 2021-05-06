@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-05 14:13+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: client/forms.py:7
+msgid "Parol takrorlang"
+msgstr "Повторите пароль"
+
+#: client/forms.py:11
+msgid "Parol birhil emas!!!"
+msgstr "Пароль не тот"
+
+#: client/forms.py:21 client/forms.py:34
+msgid "Login"
+msgstr "Авторизоваться"
+
+#: client/forms.py:22
+msgid "Parol"
+msgstr "Пароль"
+
+#: client/forms.py:26
+msgid "Lotin harflari, sonlar va @/./+/-/_ belgilargan iborat bo'lishi lozim."
+msgstr ""
+"Он должен состоять из латинских букв, цифр и символов @ /. / + / - / _."
+
+#: client/forms.py:35
+msgid "password"
+msgstr "пароль"
+
+#: client/views.py:18 templates/layouts/base.html:3
+msgid "Ro'yhatdan o'tish"
+msgstr "Регистрация"
+
+#: client/views.py:33
+msgid "Siz muvaffaqiyatli ro'yhatdan o'tingiz !!!"
+msgstr "Вы успешно зарегистрировались !!!"
+
+#: client/views.py:45 templates/layouts/base.html:7
+msgid "Tizimga kirish"
+msgstr "Авторизоваться"
+
+#: client/views.py:59
+msgid "Xush kelibsiz, {}!"
+msgstr "Добро пожаловать, {}!"
+
+#: client/views.py:63
+msgid "Login va/yoki parol noyo'ri."
+msgstr "Требуется логин и / или пароль."
+
+#: client/views.py:72
+msgid "Xayr {}!"
+msgstr "Пока {}!"
+
+#: client/views.py:87 templates/layouts/base.html:4
+msgid "Profil"
+msgstr "Профиль"
+
+#: client/views.py:88
+msgid "Saqlash"
+msgstr "Сохранить"
+
+#: main/models.py:13
+msgid "Kategoriya"
+msgstr "Категория"
+
+#: main/models.py:14
+msgid "Kategoriyalar"
+msgstr "Категории"
+
+#: main/models.py:30
+msgid "Maqola"
+msgstr "Статья"
+
+#: main/models.py:31
+msgid "Maqolalar"
+msgstr "Статьи"
+
+#: main/models.py:45
+msgid "Maqola izohi"
+msgstr "Комментария"
+
+#: main/models.py:46
+msgid "Maqolalar izohi"
+msgstr "Комментарий"
+
+#: main/views.py:24 templates/layouts/base.html:6
+msgid "Yuklash"
+msgstr "Скачать"
+
+#: main/views.py:27
+msgid "Muvaffaqiyatli qo'shildi."
+msgstr "Успешно добавлено."
+
+#: templates/layouts/base.html:5
+msgid "Chiqish"
+msgstr "Выход"

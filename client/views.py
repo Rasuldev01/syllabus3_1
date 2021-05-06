@@ -42,7 +42,7 @@ class ClientLogin(View):
     def setup(self, request, *args, **kwargs):
         super().setup(request, *args, **kwargs)
 
-        request.title = ("Tizimga kirish")
+        request.title = _("Tizimga kirish")
 
     def get(self, request):
         return render(request, 'layouts/form.html', {
@@ -56,7 +56,7 @@ class ClientLogin(View):
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if not user is None:
                 login(request, user)
-                messages.success(request, _("Xushkelibsiz, {}!".format(user.username)))
+                messages.success(request, _("Xush kelibsiz, {}!").format(user.username))
 
                 return redirect('main:index')
 
@@ -69,7 +69,7 @@ class ClientLogin(View):
 
 @login_required
 def client_logout(request):
-    messages.success(request, "Xayr {}!".format(request.user.username))
+    messages.success(request, _("Xayr {}!").format(request.user.username))
     logout(request)
 
     return redirect('main:index')

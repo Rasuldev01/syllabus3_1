@@ -1,4 +1,12 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as e %}
+{% trans "Ro'yhatdan o'tish" as register %}
+{% trans "Profil" as profil %}
+{% trans "Chiqish" as chiqish %}
+{% trans "Yuklash" as yuklash %}
+{% trans "Tizimga kirish" as tizim %}
+
 <!doctype html>
 <html lang="uz">
 <head>
@@ -21,40 +29,55 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto mr-3">
                 {% if user.is_authenticated %}
                     <li class="nav-item {% if crn == "client:profile" %}active{% endif %}">
                     <li class="nav-item dropdown">
-                    <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ request.user.avatar }}" class="user-avatar rounded-circle">
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ request.user.avatar }}" class="user-avatar rounded-circle">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                            <a class="dropdown-item" href="{% url "client:profile" %}">Profil</a>
+                            <a class="dropdown-item" href="{% url "client:profile" %}">{{ profil }}</a>
 
-                            <a class="dropdown-item" href="{% url "client:logout" %}">Chiqish</a>
+                            <a class="dropdown-item" href="{% url "client:logout" %}">{{ chiqish }}</a>
 
-                    </div>
-                         <li class="nav-item active mt-2">
-                        <a class="btn btn-primary rounded-pill" href="{% url "main:upload" %}"><i class="bi bi-arrow-bar-up"></i>Yuklash</a>
+                        </div>
+                    <li class="nav-item active mt-2">
+                        <a class="btn btn-primary rounded-pill" href="{% url "main:upload" %}"><i
+                                class="bi bi-arrow-bar-up"></i>{{ yuklash }}</a>
                     </li>
                 {% else %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url "client:login" %}">Tizimga kirish</a>
+                    <li class="nav-item active mr-3">
+                        <a class="nav-link" href="{% url "client:login" %}">{{ tizim }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="btn btn-primary rounded-pill" href="{% url "client:registration" %}">Roʻyxatdan
-                            oʻtish</a>
+                        <a class="btn btn-primary rounded-pill"
+                           href="{% url "client:registration" %}">{{ register }}</a>
                     </li>
                 {% endif %}
-
-                </ul>
-                </div>
             </ul>
         </div>
+        </ul>
+        {% for l in settings.LANGUAGES %}
+            {% if l.0 != e %}
+                <div class="dropdown show">
+                    <a class="dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {% if request.get_full_path != '/uz/' %}🇷🇺{% else %}🇺🇿{% endif %}
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/{{ l.0 }}/">🇺🇿 O'zbek</a>
+                        <a class="dropdown-item" href="/{{ l.0 }}/">🇷🇺 Russ</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
     </div>
 </nav>
-
 
 <div class="container">
     {% include "includes/_message.html" %}
@@ -69,5 +92,6 @@
 
 <script src="{% static 'vendor/jquery.js' %}"></script>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

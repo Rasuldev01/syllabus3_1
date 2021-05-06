@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 import environ
+
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -59,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'gag.urls'
@@ -76,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -153,3 +157,17 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'client.User'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
+
+LANGUAGES = [
+    ('uz', 'Uzbek🇺🇿'),
+    ('ru', 'Russian🇷🇺')
+]
+
+
+SETTINGS_EXPORT = [
+    'LANGUAGES'
+]

@@ -1,6 +1,7 @@
 from django.db import models
 from gag.helpers import UploadTo
 from gag.mixins import TranslateMixin
+from django.utils.translation import gettext_lazy as _
 
 class Category(TranslateMixin, models.Model):
     translate_fields = ['name']
@@ -9,8 +10,8 @@ class Category(TranslateMixin, models.Model):
     image = models.ImageField(upload_to=UploadTo("category"))
 
     class Meta:
-        verbose_name = 'Kategoriya'
-        verbose_name_plural = 'Kategoriyalar'
+        verbose_name = _('Kategoriya')
+        verbose_name_plural = _('Kategoriyalar')
 
     def __str__(self):
         return self.name
@@ -25,6 +26,10 @@ class Post(TranslateMixin, models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
     upload_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = _('Maqola')
+        verbose_name_plural = _('Maqolalar')
+
 class PostComment(TranslateMixin, models.Model):
     parent = models.ForeignKey("main.PostComment", on_delete=models.RESTRICT, null=True, default=None)
     post = models.ForeignKey("main.Post", on_delete=models.RESTRICT)
@@ -35,6 +40,10 @@ class PostComment(TranslateMixin, models.Model):
     dislike = models.IntegerField(default=0)
     added_at = models.DateTimeField(auto_now_add=True)
     upload_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _('Maqola izohi')
+        verbose_name_plural = _('Maqolalar izohi')
 
 
 
