@@ -24,6 +24,7 @@ class UploadPost(LoginRequiredMixin, CreateView):
         request.title = _("Yuklash")
 
     def form_valid(self, form):
+        form.instance.user = self.request.user
         messages.success(self.request, _("Muvaffaqiyatli qo'shildi."))
 
-        return self().form_valid(form)
+        return super().form_valid(form)

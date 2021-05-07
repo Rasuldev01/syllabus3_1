@@ -59,35 +59,29 @@
                 {% endif %}
             </ul>
         </div>
-        </ul>
         {% for l in settings.LANGUAGES %}
             {% if l.0 != e %}
-                <div class="dropdown show">
+                <div class="dropdown show ml-auto">
                     <a class="dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         {% if request.get_full_path != '/uz/' %}🇷🇺{% else %}🇺🇿{% endif %}
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/{{ l.0 }}/">🇺🇿 O'zbek</a>
-                        <a class="dropdown-item" href="/{{ l.0 }}/">🇷🇺 Russ</a>
+                        <a class="dropdown-item" href="/{{ l.0 }}/"><b>Uz / Ru</b></a>
+{#                        <a class="dropdown-item" href="/{{ l.0 }}/">🇷🇺 Russ</a>#}
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
     </div>
-    </div>
 </nav>
 
 <div class="container">
+    {% block content %}{% endblock %}
     {% include "includes/_message.html" %}
+    {% include 'layouts/_category.html' %}
 </div>
-{% block content %}
-
-{% endblock %}
-
-
-
 
 
 <script src="{% static 'vendor/jquery.js' %}"></script>

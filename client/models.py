@@ -12,3 +12,6 @@ class User(AbstractUser):
             return self.photo.url
 
         return static("img/no-avatar.jpeg")
+    class Meta:
+        verbose_name = "Foydalanuvchi"
+        verbose_name_plural = "Foydalanuvchilar"
