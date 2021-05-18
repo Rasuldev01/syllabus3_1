@@ -20,8 +20,7 @@ class MainIndex(View):
 
         return render(request, 'main/index.html', {
             'object_list': page.object_list,
-            'page_obj': page,
-            'categories': Category.objects.all()
+            'page_obj': page
 
         })
 
