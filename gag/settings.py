@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'main',
     'client',
     'crispy_forms',
+    'bootstrap_pagination'
 
 ]
 
@@ -163,8 +164,8 @@ LOCALE_PATHS = [
 ]
 
 LANGUAGES = [
-    ('uz', 'Uzbek🇺🇿'),
-    ('ru', 'Russian🇷🇺')
+    ('uz', '🇺🇿 Uzbek'),
+    ('ru', '🇷🇺 Russian')
 ]
 
 

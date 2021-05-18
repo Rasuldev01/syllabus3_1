@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from gag.helpers import UploadTo
 from gag.mixins import TranslateMixin
@@ -30,6 +32,23 @@ class Post(TranslateMixin, models.Model):
         verbose_name = _('Maqola')
         verbose_name_plural = _('Maqolalar')
 
+    @property
+    def ext(self):
+        return (os.path.splitext(self.file.name)[1])[1:].lower()
+
+    @property
+    def is_image(self):
+        return self.ext in ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
+
+    @property
+    def is_video(self):
+        return self.ext in ['mp4', 'mpeg']
+
+    @property
+    def is_audio(self):
+        return self.ext in ['mp3', 'wav']
+
+
 class PostComment(TranslateMixin, models.Model):
     parent = models.ForeignKey("main.PostComment", on_delete=models.RESTRICT, null=True, default=None)
     post = models.ForeignKey("main.Post", on_delete=models.RESTRICT)
@@ -44,7 +63,5 @@ class PostComment(TranslateMixin, models.Model):
     class Meta:
         verbose_name = _('Maqola izohi')
         verbose_name_plural = _('Maqolalar izohi')
-
-
 
 

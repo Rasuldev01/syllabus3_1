@@ -1,6 +1,7 @@
 {% load static %}
 {% load i18n %}
-{% get_current_language as e %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}
 {% trans "Ro'yhatdan o'tish" as register %}
 {% trans "Profil" as profil %}
 {% trans "Chiqish" as chiqish %}
@@ -59,28 +60,30 @@
                 {% endif %}
             </ul>
         </div>
-        {% for l in settings.LANGUAGES %}
-            {% if l.0 != e %}
-                <div class="dropdown show ml-auto">
-                    <a class="dropdown" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        {% if request.get_full_path != '/uz/' %}🇷🇺{% else %}🇺🇿{% endif %}
-                    </a>
 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/{{ l.0 }}/"><b>Uz / Ru</b></a>
-{#                        <a class="dropdown-item" href="/{{ l.0 }}/">🇷🇺 Russ</a>#}
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
+        <div class="dropdown show ml-auto">
+            <a class="dropdown lang-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                {% for l in LANGUAGES %}
+                    {% if l.0 == LANGUAGE_CODE %}
+                        {{ l.1|slice:":2" }}
+                    {% endif %}
+                {% endfor %}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {% for l in LANGUAGES %}
+                    <a class="dropdown-item" href="/{{ l.0 }}{{ request.get_full_path|slice:"3:" }}">{{ l.1 }}</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </nav>
 
 <div class="container">
     {% block content %}{% endblock %}
     {% include "includes/_message.html" %}
-    {% include 'layouts/_category.html' %}
+
 </div>
 
 
