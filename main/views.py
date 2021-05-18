@@ -3,12 +3,13 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView
-from .models import Post, Category
+from django.views.generic import CreateView, ListView
+from .models import Post, Category, PostComment
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.http import Http404
 from django.db import transaction
+from main.forms import PostCommentForm
 
 class MainIndex(View):
     def get(self, request, pk=None):
@@ -68,3 +69,33 @@ class PostLike(View):
             post.save()
 
             return _redirect()
+
+class PostCommentView(ListView):
+    model = PostComment
+    paginate_by = 10
+    ordering = '-id'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(post_id=self.kwargs['post_id'])
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['post'] = Post.objects.get(id=self.kwargs['post_id'])
+        context['form'] = PostCommentForm
+        return context
+
+    def post(self, request, post_id):
+        if not request.user.is_authenticated:
+            return redirect('main:comment', post_id=self.kwargs['post_id'])
+
+        form = PostCommentForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            comment:PostComment = form.save(commit=False)
+            comment.post_id = post_id
+            comment.user = self.request.user
+            comment.save()
+
+            return redirect('main:comment', post_id=post_id)
+
+        return self.get(request, post_id=post_id)

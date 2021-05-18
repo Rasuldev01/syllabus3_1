@@ -54,7 +54,7 @@ class PostComment(TranslateMixin, models.Model):
     post = models.ForeignKey("main.Post", on_delete=models.RESTRICT)
     user = models.ForeignKey("client.User", on_delete=models.RESTRICT)
     comment = models.TextField(verbose_name='Izoh')
-    image = models.ImageField(upload_to=UploadTo("comment"))
+    image = models.ImageField(upload_to=UploadTo("comment"), null=True, blank=True, default=True)
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
     added_at = models.DateTimeField(auto_now_add=True)

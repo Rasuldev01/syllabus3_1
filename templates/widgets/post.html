@@ -34,7 +34,7 @@
            class="border px-3 py-2 text-muted ml-2">
             <i class="bi-hand-thumbs-down"></i>{{ post.dislike }}
         </a>
-        <a href="#" class="border px-3 py-2 text-muted ml-2">
+        <a href="{% url 'main:comments' post.id %}" class="border px-3 py-2 text-muted ml-2">
             <i class="bi-chat-left-fill"></i>
         </a>
     </div>
