@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-{% load static i18n %}
+    {% load static i18n %}
     <div class="row">
         <div class="col-2">
             <div class="kategoriyallar">
@@ -9,10 +9,18 @@
             </div>
             <div>
                 {% for cat in categories %}
-                    <a class="d-flex align-items-center text-black-50" href="{% url 'main:cat' cat.id %}">
+                    <a data-id="{{ cat.id }}"
+                            {% if cat.id == 2 %}
+                       data-bg-color="#0000FF"
+                            {% elif cat.id == 3 %}
+                       data-bg-color="#FF0000"
+                            {% else %}
+                       data-bg-color="#f0f000"
+                            {% endif %}
+                       class="d-flex align-items-center text-black-50 cat-link" href="{% url 'main:cat' cat.id %}">
                 <span class="d-inline-block cat-img mr-2 cover"
                       style="background-image: url('{{ cat.image.url }}')"></span>
-                        {{ cat.name }}
+                        <span class="cat-name">{{ cat.name }}</span>
                     </a>
                 {% endfor %}
             </div>
@@ -20,7 +28,7 @@
         <div class="col-10">
             <img src="{% static 'img/banner (1).gif' %}" class="gif img-fluid">
             <div class="row">
-                <div class="col-9">
+                <div class="col-9" id="id_content">
                     {% block banner_content %}{% endblock %}
                 </div>
                 <div class="col-3 mt-3">
