@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 14:13+0500\n"
+"POT-Creation-Date: 2021-05-25 13:36+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 msgid "password"
 msgstr "пароль"
 
-#: client/views.py:18 templates/layouts/base.html:3
+#: client/views.py:18 templates/layouts/base.html:5
 msgid "Ro'yhatdan o'tish"
 msgstr "Регистрация"
 
@@ -53,7 +53,7 @@ msgstr "Регистрация"
 msgid "Siz muvaffaqiyatli ro'yhatdan o'tingiz !!!"
 msgstr "Вы успешно зарегистрировались !!!"
 
-#: client/views.py:45 templates/layouts/base.html:7
+#: client/views.py:45 templates/layouts/base.html:9
 msgid "Tizimga kirish"
 msgstr "Авторизоваться"
 
@@ -69,7 +69,7 @@ msgstr "Требуется логин и / или пароль."
 msgid "Xayr {}!"
 msgstr "Пока {}!"
 
-#: client/views.py:87 templates/layouts/base.html:4
+#: client/views.py:87 templates/layouts/base.html:6
 msgid "Profil"
 msgstr "Профиль"
 
@@ -77,38 +77,49 @@ msgstr "Профиль"
 msgid "Saqlash"
 msgstr "Сохранить"
 
-#: main/models.py:13
+#: main/forms.py:12
+msgid "Izoh"
+msgstr ""
+
+#: main/forms.py:13
+msgid "Rasm"
+msgstr ""
+
+#: main/models.py:15
 msgid "Kategoriya"
 msgstr "Категория"
 
-#: main/models.py:14
+#: main/models.py:16
 msgid "Kategoriyalar"
 msgstr "Категории"
 
-#: main/models.py:30
+#: main/models.py:32
 msgid "Maqola"
 msgstr "Статья"
 
-#: main/models.py:31
+#: main/models.py:33
 msgid "Maqolalar"
 msgstr "Статьи"
 
-#: main/models.py:45
+#: main/models.py:64
 msgid "Maqola izohi"
 msgstr "Комментария"
 
-#: main/models.py:46
+#: main/models.py:65
 msgid "Maqolalar izohi"
 msgstr "Комментарий"
 
-#: main/views.py:24 templates/layouts/base.html:6
+#: main/views.py:61 templates/layouts/base.html:8
 msgid "Yuklash"
 msgstr "Скачать"
 
-#: main/views.py:27
+#: main/views.py:65
 msgid "Muvaffaqiyatli qo'shildi."
 msgstr "Успешно добавлено."
 
-#: templates/layouts/base.html:5
+#: templates/layouts/base.html:7
 msgid "Chiqish"
 msgstr "Выход"
+
+#~ msgid "Ajax so'rov bilan yuklaysanmi?"
+#~ msgstr "Do you want to update with Ajax"

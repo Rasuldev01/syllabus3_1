@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script>
+        let VAR_LANG = "{{ LANGUAGE_CODE }}";
+    </script>
     <title>Document</title>
 </head>
 <body>
@@ -87,10 +90,10 @@
 </div>
 
 <button class="button1" id="btn">ok</button>
-<div data-id = 1>Salom</div>
-<span data-id = 1>Salom</span>
+
 <script src="{% static 'vendor/jquery.js' %}"></script>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+<script src="{% url 'javascript-catalog' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

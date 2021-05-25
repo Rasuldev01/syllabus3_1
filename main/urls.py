@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import MainIndex, UploadPost, PostLike, PostCommentView, MainCatAjax
 
+
 app_name = 'main'
 
 urlpatterns = [
