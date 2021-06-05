@@ -52,3 +52,7 @@ $(".cat-link").on("click", function (e) {
     make_query()
     return false;
 })
+$(".like").on("click", function (e){
+    alert(1);
+    return false
+})

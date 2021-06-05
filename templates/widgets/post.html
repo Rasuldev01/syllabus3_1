@@ -28,7 +28,7 @@
     <div class="d-flex mb-3 ">
         <a href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"
            class="border px-3 py-2 text-muted">
-            <i class="bi-hand-thumbs-up"></i>{{ post.like }}
+            <i class="bi-hand-thumbs-up like"></i>{{ post.like }}
         </a>
         <a href="{% url 'main:like' 'dislike' post.id %}?return={{ request.get_full_path }}"
            class="border px-3 py-2 text-muted ml-2">
